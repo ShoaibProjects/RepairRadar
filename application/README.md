@@ -1,8 +1,3 @@
-# React + Vite
+# Our Aim
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ok so we are trying to create a MERN app named as repair radar which is a service management system by which users can order repairs and fixes related to electrical supply, appliances, mechanics, and pluming and our app will get them connected to nearby service men. Users can see which relavent service men are in there area, what services they offers and typically charge for typical services and their ratings. Users had first order a test from the service men which is a fixed minimum fees needed for service to come in see their issue. Then after detecting their issue, they can discuss the amount for each type of fixes. Service men should adhere to the listed amount on their page and not more according to the policy. After the each repair, the payment has to go through our app where is get our cut and then to the service men. User can not choose to repair if he wanted to after checkup fees. To prevent both from by passing our app, users can only gave rating the servicemen after repair payment on our app. Same for gravience/complains. We also provide offres such as free minor fixes, no test fees coupons and discounts on some repairs to users who only pay using our app. Also, we promote servicemen more who receive payments from our app as an experience point along with ratings to our app page on that area.
