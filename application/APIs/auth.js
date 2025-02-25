@@ -59,3 +59,56 @@ export const userSignin = async (req, res) => {
   }
 };
 
+export const ServicemanSignup = async (req, res) => {
+  try {
+    let email = req.body.email;
+    let name = req.body.name;
+    let reqPassword = req.body.password;
+    let address = req.body.address;
+    let services = req.body.services;
+    const hashedPassword = await bcrypt.hash(reqPassword, 10);
+    const ISserviceman = await Serviceman.findOne({ email });
+    if (ISserviceman) {
+      return res.status(409).json({ message: "Account already exists" });
+    }
+
+    const serviceman = new Serviceman({
+      email: email,
+      name: name,
+      password: hashedPassword,
+      address: address,
+      services: services,
+    });
+
+    const newServiceman = await serviceman.save();
+
+    const {password, ...others} = newServiceman._doc;
+    res.status(201).json(others);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
+export const servicemanSignin = async (req, res) => {
+  try {
+    const serviceman = await Serviceman.findOne({ email: req.body.email });
+
+    // If user not found
+    if (!serviceman) {
+      return res.status(404).json({ message: "Account not found" });
+    }
+
+    // Compare the password with the hashed password in the database
+    const isMatch = await bcrypt.compare(req.body.password, serviceman.password);
+
+    // If the password doesn't match
+    if (!isMatch) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+    const {password, ...others} = serviceman._doc;
+    res.status(200).json(others);
+    }
+     catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
